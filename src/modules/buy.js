@@ -5,6 +5,10 @@ export function initBuy({ gsap, ScrollTrigger, reduced }) {
   const bg = section.querySelector('[data-buy-bg]');
   const coin = section.querySelector('[data-buy-coin]');
   const no = section.querySelector('[data-dodge]');
+  // Scoped, not a global '.btn--mega' / '.buy__title' selector — the audio
+  // gate reuses .btn--mega, and a document-wide tween would hide it.
+  const title = section.querySelector('.buy__title');
+  const cta = section.querySelector('.btn--mega');
 
   if (reduced) return;
 
@@ -46,7 +50,7 @@ export function initBuy({ gsap, ScrollTrigger, reduced }) {
   );
 
   gsap.fromTo(
-    '.buy__title',
+    title,
     { scale: 0.4, autoAlpha: 0 },
     {
       scale: 1,
@@ -58,7 +62,7 @@ export function initBuy({ gsap, ScrollTrigger, reduced }) {
   );
 
   gsap.fromTo(
-    '.btn--mega',
+    cta,
     { yPercent: 60, autoAlpha: 0 },
     {
       yPercent: 0,

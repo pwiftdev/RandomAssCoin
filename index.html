@@ -25,6 +25,43 @@
       </div>
     </div>
 
+    <!-- ================= AUDIO GATE =================
+         Browsers block autoplay with sound, so the soundtrack needs a real
+         user gesture. This is that gesture. -->
+    <div class="gate" data-gate hidden>
+      <div class="gate__inner">
+        <div class="gate__die" data-gate-die aria-hidden="true"></div>
+        <h2 class="gate__title">
+          CLICK THIS RANDOM ASS<br />FUCKING BUTTON,<br /><em>RIGHT NOW.</em>
+        </h2>
+        <button class="btn btn--mega gate__btn" data-gate-go>CLICK IT</button>
+        <button class="gate__skip" data-gate-skip>nah, keep it quiet</button>
+      </div>
+    </div>
+
+    <!-- ================= VOLUME DOCK ================= -->
+    <div class="vol" data-vol hidden>
+      <button class="vol__toggle" data-vol-toggle aria-label="Mute soundtrack">
+        <span data-vol-icon>♪</span>
+      </button>
+      <label class="vol__slider">
+        <span class="vol__label">VOL</span>
+        <input
+          class="vol__range"
+          type="range"
+          min="0"
+          max="100"
+          value="55"
+          step="1"
+          data-vol-range
+          aria-label="Soundtrack volume"
+        />
+        <span class="vol__num" data-vol-num>55</span>
+      </label>
+    </div>
+
+    <audio data-audio src="./soundtrack.mp3" loop preload="auto"></audio>
+
     <!-- ================= GLOBAL CHROME ================= -->
     <div class="cursor" data-cursor><span data-cursor-inner></span></div>
     <div class="grain" aria-hidden="true"></div>

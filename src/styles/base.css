@@ -44,9 +44,10 @@ body {
   scroll-behavior: auto;
 }
 
+/* No `height: 100vh` here — clamping the body collapses document height, and
+   any ScrollTrigger.refresh() that lands while locked measures garbage. */
 body.is-locked {
   overflow: hidden;
-  height: 100vh;
 }
 
 img {

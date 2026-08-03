@@ -1,6 +1,7 @@
 import './styles/base.css';
 import './styles/sections.css';
 import './styles/mockups.css';
+import './styles/audio.css';
 
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -18,6 +19,7 @@ import { initRoadmap } from './modules/roadmap.js';
 import { initWall } from './modules/wall.js';
 import { initBuy } from './modules/buy.js';
 import { initChaos } from './modules/chaos.js';
+import { initAudio } from './modules/audio.js';
 import { initCopy, initMagnets, initTopbar } from './modules/interactions.js';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -76,6 +78,8 @@ initCopy(ctx);
 initMagnets(ctx);
 initTopbar(ctx);
 initCursor(ctx);
+// Subscribes to 'rac:enter', so it must be wired before the preloader fires it.
+initAudio(ctx);
 
 // Fonts land after first paint and shift every headline; recalc once settled.
 if (document.fonts?.ready) {
@@ -88,7 +92,8 @@ window.addEventListener('load', () => ScrollTrigger.refresh());
 if (import.meta.env.DEV) window.rac = ctx;
 
 initPreloader(ctx, () => {
+  // Measure before the audio gate locks scrolling, not after.
+  ScrollTrigger.refresh();
   document.dispatchEvent(new CustomEvent('rac:enter'));
   initChaos(ctx);
-  ScrollTrigger.refresh();
 });
