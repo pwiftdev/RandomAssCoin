@@ -238,7 +238,9 @@ section {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9000;
+  /* Top of the whole stack — above the audio gate (9200) and the preloader
+     (9500), or it disappears behind them exactly when it's being used. */
+  z-index: 9900;
   width: 42px;
   height: 42px;
   margin: -21px 0 0 -21px;
