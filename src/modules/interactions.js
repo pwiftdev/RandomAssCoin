@@ -1,17 +1,54 @@
+import { CONTRACT_ADDRESS, PUMP_FUN_URL } from '../config.js';
 import { pick, rand, NONSENSE_LINES } from '../lib/random.js';
 
-/** Copy-to-clipboard on the contract address chips. */
-export function initCopy() {
+const shortenAddress = (address) => `${address.slice(0, 8)}…${address.slice(-4)}`;
+
+async function copyToClipboard(value) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(value);
+    return;
+  }
+
+  const input = document.createElement('textarea');
+  input.value = value;
+  input.setAttribute('readonly', '');
+  input.style.position = 'fixed';
+  input.style.opacity = '0';
+  document.body.appendChild(input);
+  input.select();
+
+  const copied = document.execCommand('copy');
+  input.remove();
+
+  if (!copied) throw new Error('Clipboard copy failed');
+}
+
+function showCopyStatus(button, className) {
+  button.classList.remove('is-copied', 'is-copy-error');
+  button.classList.add(className);
+  setTimeout(() => button.classList.remove(className), 1600);
+}
+
+/** Populate contract details and enable copy-to-clipboard on the CA chips. */
+export function initContractAddress() {
+  document.querySelectorAll('[data-ca-link]').forEach((link) => {
+    link.href = PUMP_FUN_URL;
+  });
+
   document.querySelectorAll('[data-ca]').forEach((btn) => {
+    const address = btn.querySelector('[data-ca-text]');
+    const showFullAddress = btn.dataset.caDisplay === 'full';
+
+    address.textContent = showFullAddress ? CONTRACT_ADDRESS : shortenAddress(CONTRACT_ADDRESS);
+    btn.setAttribute('aria-label', `Copy contract address ${CONTRACT_ADDRESS}`);
+
     btn.addEventListener('click', async () => {
       try {
-        await navigator.clipboard.writeText(btn.dataset.copy);
+        await copyToClipboard(CONTRACT_ADDRESS);
+        showCopyStatus(btn, 'is-copied');
       } catch {
-        // Clipboard can be blocked (no permission, insecure context) — the
-        // chip still gives feedback so the click never feels dead.
+        showCopyStatus(btn, 'is-copy-error');
       }
-      btn.classList.add('is-copied');
-      setTimeout(() => btn.classList.remove('is-copied'), 1600);
     });
   });
 }
@@ -46,9 +83,7 @@ export function initMagnets({ gsap, reduced }) {
         ease: 'back.out(3)',
       })
     );
-    el.addEventListener('pointerleave', () =>
-      gsap.to(el, { rotate: 0, scale: 1, duration: 0.4 })
-    );
+    el.addEventListener('pointerleave', () => gsap.to(el, { rotate: 0, scale: 1, duration: 0.4 }));
   });
 }
 

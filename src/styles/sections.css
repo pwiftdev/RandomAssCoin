@@ -33,11 +33,7 @@
   position: absolute;
   inset: -30%;
   z-index: -3;
-  background: repeating-linear-gradient(
-    -38deg,
-    transparent 0 46px,
-    rgba(25, 25, 25, 0.045) 46px 92px
-  );
+  background: repeating-linear-gradient(-38deg, transparent 0 46px, rgba(25, 25, 25, 0.045) 46px 92px);
   animation: stripe-crawl 14s linear infinite;
 }
 
@@ -153,7 +149,9 @@
   box-shadow: 5px 5px 0 var(--ink);
   font-family: var(--mono);
   font-size: 13px;
-  transition: transform 0.15s, background 0.15s;
+  transition:
+    transform 0.15s,
+    background 0.15s;
   max-width: 90vw;
 }
 
@@ -180,7 +178,12 @@
 }
 
 .ca.is-copied i::after {
-  content: ' ✓ COPIED';
+  content: ' COPIED';
+  font-family: var(--display);
+}
+
+.ca.is-copy-error i::after {
+  content: ' COPY FAILED';
   font-family: var(--display);
 }
 
@@ -349,7 +352,10 @@
   gap: clamp(12px, 2.2vw, 28px);
   padding: clamp(8px, min(1.4vw, 1.5vh), 16px) clamp(10px, 1.6vw, 20px);
   border-bottom: 3px solid rgba(255, 253, 245, 0.2);
-  transition: background 0.3s, color 0.3s, opacity 0.3s;
+  transition:
+    background 0.3s,
+    color 0.3s,
+    opacity 0.3s;
   will-change: transform;
 }
 
@@ -644,7 +650,9 @@
   box-shadow: var(--shadow-soft);
   display: grid;
   gap: 8px;
-  transition: transform 0.2s cubic-bezier(0.3, 1.5, 0.5, 1), background 0.2s,
+  transition:
+    transform 0.2s cubic-bezier(0.3, 1.5, 0.5, 1),
+    background 0.2s,
     box-shadow 0.2s;
 }
 
@@ -739,7 +747,10 @@
   gap: clamp(12px, 3vw, 40px);
   padding: clamp(14px, 2.4vw, 30px) 0;
   border-bottom: 3px solid rgba(255, 253, 245, 0.25);
-  transition: background 0.2s, color 0.2s, padding 0.25s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    padding 0.25s;
   position: relative;
   overflow: hidden;
 }
@@ -855,7 +866,9 @@
   border-radius: 16px;
   box-shadow: 6px 6px 0 var(--ink);
   overflow: hidden;
-  transition: transform 0.22s cubic-bezier(0.3, 1.5, 0.5, 1), box-shadow 0.22s;
+  transition:
+    transform 0.22s cubic-bezier(0.3, 1.5, 0.5, 1),
+    box-shadow 0.22s;
   will-change: transform;
 }
 
@@ -955,11 +968,7 @@
   position: absolute;
   inset: -30%;
   z-index: -1;
-  background: repeating-conic-gradient(
-    from 0deg,
-    var(--gold) 0deg 12deg,
-    var(--paper) 12deg 24deg
-  );
+  background: repeating-conic-gradient(from 0deg, var(--gold) 0deg 12deg, var(--paper) 12deg 24deg);
   opacity: 0.5;
   will-change: transform;
 }
@@ -1031,7 +1040,10 @@
   padding: 8px 16px;
   border: 3px solid var(--paper);
   border-radius: 999px;
-  transition: background 0.15s, color 0.15s, transform 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s,
+    transform 0.15s;
 }
 
 .foot__links a:hover {

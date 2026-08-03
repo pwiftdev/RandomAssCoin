@@ -20,7 +20,7 @@ import { initWall } from './modules/wall.js';
 import { initBuy } from './modules/buy.js';
 import { initChaos } from './modules/chaos.js';
 import { initAudio } from './modules/audio.js';
-import { initCopy, initMagnets, initTopbar } from './modules/interactions.js';
+import { initContractAddress, initMagnets, initTopbar } from './modules/interactions.js';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -74,7 +74,7 @@ initSlot(ctx);
 initRoadmap(ctx);
 initWall(ctx);
 initBuy(ctx);
-initCopy(ctx);
+initContractAddress();
 initMagnets(ctx);
 initTopbar(ctx);
 initCursor(ctx);

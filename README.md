@@ -2,6 +2,9 @@
 
 Landing page for the most random ass coin ever.
 
+Set the live contract address once in `src/config.js`. The CA buttons, clipboard
+value, and Pump.fun links are all populated from that value.
+
 ```bash
 npm install
 npm run dev      # http://localhost:5173
